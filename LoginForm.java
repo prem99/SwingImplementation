@@ -16,9 +16,9 @@ public class LoginForm extends JFrame implements ActionListener {
     private JPanel passPanel;
     private JLabel passLabel;
 
-    private JButton submit;
+    private JButton login;
     private JButton createAccount;
-    private JPanel submitPanel;
+    private JPanel loginPanel;
 
     LoginForm() {
         titlePanel = new JPanel();
@@ -39,13 +39,13 @@ public class LoginForm extends JFrame implements ActionListener {
         passPanel.add(passLabel);
         passPanel.add(pass);
 
-        submit = new JButton("Login");
+        login = new JButton("Login");
         createAccount = new JButton("Register");
-        submitPanel = new JPanel();
-        submitPanel.add(createAccount);
-        submitPanel.add(submit);
-        submit.setActionCommand("submit");
-        submit.addActionListener(this);
+        loginPanel = new JPanel();
+        loginPanel.add(createAccount);
+        loginPanel.add(login);
+        login.setActionCommand("login");
+        login.addActionListener(this);
         createAccount.setActionCommand("createAccount");
         createAccount.addActionListener(this);
 
@@ -54,7 +54,7 @@ public class LoginForm extends JFrame implements ActionListener {
         north.add(titlePanel);
         north.add(emailPanel);
         north.add(passPanel);
-        north.add(submitPanel);
+        north.add(loginPanel);
 
         north.setVisible(true);
 
@@ -63,7 +63,7 @@ public class LoginForm extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if ("submit".equals(e.getActionCommand())) {
+        if ("login".equals(e.getActionCommand())) {
 
         }
         if ("createAccount".equals(e.getActionCommand())) {
