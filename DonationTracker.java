@@ -6,4 +6,6 @@ public class DonationTracker {
     static void login() {
         new LoginForm().setVisible(true);
     }
+
+    static void register() {new RegistrationForm().setVisible(true);}
 }

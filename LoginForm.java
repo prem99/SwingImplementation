@@ -22,7 +22,7 @@ public class LoginForm extends JFrame implements ActionListener {
 
     LoginForm() {
         titlePanel = new JPanel();
-        title = new JLabel("Donation Tracker");
+        title = new JLabel("Donation Tracker: Login Form");
         titlePanel.add(title);
 
         emailPanel = new JPanel();
@@ -58,14 +58,6 @@ public class LoginForm extends JFrame implements ActionListener {
 
         north.setVisible(true);
 
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                System.out.print("close");
-                System.exit(0);
-            }
-        });
         this.setSize(600,600);
         this.setResizable(false);
     }
@@ -75,7 +67,8 @@ public class LoginForm extends JFrame implements ActionListener {
 
         }
         if ("createAccount".equals(e.getActionCommand())) {
-
+            DonationTracker.register();
+            this.dispose();
         }
     }
 }
