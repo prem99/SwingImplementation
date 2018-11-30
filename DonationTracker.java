@@ -12,4 +12,8 @@ public class DonationTracker {
     static void register() {new RegistrationForm().setVisible(true);}
 
     static void openingScreen() {new HomePage().setVisible(true);}
+
+
+    static void viewAllLocations() {new ViewAllLocationsPage().setVisible(true);}
+
 }

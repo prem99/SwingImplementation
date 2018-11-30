@@ -10,8 +10,10 @@ public class HomePage extends JFrame implements ActionListener {
 
 
     private JButton viewLocations;
-    private JButton createAccount;
     private JPanel locationPanel;
+
+    private JButton logOut;
+
 
     HomePage() {
         titlePanel = new JPanel();
@@ -19,9 +21,13 @@ public class HomePage extends JFrame implements ActionListener {
         titlePanel.add(title);
 
         viewLocations = new JButton("View Locations");
+        logOut = new JButton("Log out");
         locationPanel = new JPanel();
         locationPanel.add(viewLocations);
+        locationPanel.add(logOut);
         viewLocations.setActionCommand("viewLocations");
+        logOut.setActionCommand("logOut");
+        logOut.addActionListener(this);
         viewLocations.addActionListener(this);
 
         north = getContentPane();
@@ -38,6 +44,12 @@ public class HomePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if ("viewLocations".equals(e.getActionCommand())) {
             //go to view locations
+            DonationTracker.viewAllLocations();
+            this.dispose();
+        }
+        if ("logOut".equals(e.getActionCommand())) {
+            //go to login page
+            DonationTracker.login();
             this.dispose();
         }
     }
