@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class LoginForm extends JFrame implements ActionListener {
     private Container north;
@@ -63,19 +65,25 @@ public class LoginForm extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if ("login".equals(e.getActionCommand())) {
-            if (UserInfo.attemptLogin(email.getText(), new String(pass.getPassword())) != null) {
-                DonationTracker.openingScreen();
-                this.dispose();
-            } else {
-                //System.out.println("login failed");
-                loginFail();
+        try {
+            if ("login".equals(e.getActionCommand())) {
+                if (UserInfo.attemptLogin(email.getText(), new String(pass.getPassword())) != null) {
+                    DonationTracker.openingScreen();
+                    this.dispose();
+                } else {
+                    //System.out.println("login failed");
+                    loginFail();
+                }
             }
+            if ("createAccount".equals(e.getActionCommand())) {
+                DonationTracker.register();
+                this.dispose();
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("Failed to read csv file");
         }
-        if ("createAccount".equals(e.getActionCommand())) {
-            DonationTracker.register();
-            this.dispose();
-        }
+
+
     }
 
     private void loginFail() {

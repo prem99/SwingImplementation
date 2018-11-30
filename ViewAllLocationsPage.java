@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class ViewAllLocationsPage extends JFrame implements ActionListener {
     private Container north;
@@ -36,10 +37,15 @@ public class ViewAllLocationsPage extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if ("back".equals(e.getActionCommand())) {
-            DonationTracker.openingScreen();
-            this.dispose();
+        try {
+            if ("back".equals(e.getActionCommand())) {
+                DonationTracker.openingScreen();
+                this.dispose();
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("Failed to read csv file");
         }
+
 
     }
 

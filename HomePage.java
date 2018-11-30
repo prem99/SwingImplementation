@@ -2,20 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class HomePage extends JFrame implements ActionListener {
     private Container north;
     private JLabel title;
     private JPanel titlePanel;
 
-
+    private JButton logOut;
     private JButton viewLocations;
     private JPanel locationPanel;
 
-    private JButton logOut;
 
-
-    HomePage() {
+    HomePage() throws FileNotFoundException {
+        readCSVFile();
         titlePanel = new JPanel();
         title = new JLabel("Welcome! ");
         titlePanel.add(title);
@@ -52,5 +52,11 @@ public class HomePage extends JFrame implements ActionListener {
             DonationTracker.login();
             this.dispose();
         }
+    }
+
+    private void readCSVFile() throws FileNotFoundException {
+        InputStream csvStream = new FileInputStream(new File("location_data.csv")) {
+        };
+        Location.parseCSV(csvStream);
     }
 }
