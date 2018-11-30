@@ -64,8 +64,9 @@ public class LoginForm extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if ("login".equals(e.getActionCommand())) {
-            if (UserInfo.attemptLogin(email.getText(), new String(pass.getPassword()))) {
-                System.out.println("login successful");
+            if (UserInfo.attemptLogin(email.getText(), new String(pass.getPassword())) != null) {
+                DonationTracker.openingScreen();
+                this.dispose();
             } else {
                 System.out.println("login failed");
             }

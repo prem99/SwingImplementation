@@ -15,7 +15,7 @@ public class UserInfo {
         loginInfo.put(email, userInfo);
     }
 
-    public static boolean attemptLogin(String email, String password) {
+    public static String attemptLogin(String email, String password) {
         boolean validEmail = false;
         boolean validPassword = false;
         for (String emails : loginInfo.keySet()) {
@@ -27,9 +27,9 @@ public class UserInfo {
             validPassword = true;
         }
         if (validEmail && validPassword) {
-            return true;
+            return email;
         } else {
-            return false;
+            return null;
         }
     }
 
