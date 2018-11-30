@@ -67,12 +67,17 @@ public class LoginForm extends JFrame implements ActionListener {
             if (UserInfo.attemptLogin(email.getText(), new String(pass.getPassword()))) {
                 System.out.println("login successful");
             } else {
-                System.out.println("login failed");
+                //System.out.println("login failed");
+                loginFail();
             }
         }
         if ("createAccount".equals(e.getActionCommand())) {
             DonationTracker.register();
             this.dispose();
         }
+    }
+
+    private void loginFail() {
+        JOptionPane.showMessageDialog(north, "Login Failed");
     }
 }
