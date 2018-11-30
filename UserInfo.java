@@ -15,14 +15,21 @@ public class UserInfo {
         loginInfo.put(email, userInfo);
     }
 
-    public static void attemptLogin(String email, String password) {
+    public static boolean attemptLogin(String email, String password) {
+        boolean validEmail = false;
+        boolean validPassword = false;
         for (String emails : loginInfo.keySet()) {
             if (emails.equals(email)) {
-                System.out.println("email is correct");
+                validEmail = true;
             }
         }
-        if (password.equals(loginInfo.get(email).get(1))) {
-            System.out.println("password is correct");
+        if (validEmail && password.equals(loginInfo.get(email).get(1))) {
+            validPassword = true;
+        }
+        if (validEmail && validPassword) {
+            return true;
+        } else {
+            return false;
         }
     }
 

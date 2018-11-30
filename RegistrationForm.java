@@ -88,13 +88,29 @@ public class RegistrationForm extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        boolean validRegister = true;
         if ("register".equals(e.getActionCommand())) {
-            UserInfo.addNewUser(name.getText(), email.getText(),
-                    pass.getSelectedText(),
-                    dropDown.getSelectedItem().toString());
+            if (name.getText().isEmpty() || email.getText().isEmpty()
+                    || (new String(pass.getPassword())).isEmpty()) {
+                System.out.println("fields cannot be empty");
+                validRegister = false;
+            }
+            if (validRegister) {
+                for (String emails : UserInfo.loginInfo.keySet()) {
+                    if (emails.equals(email.getText())) {
+                        System.out.println("this email has already been taken");
+                        validRegister = false;
+                    }
+                }
+            }
+            if (validRegister) {
+                UserInfo.addNewUser(name.getText(), email.getText(),
+                        new String(pass.getPassword()),
+                        dropDown.getSelectedItem().toString());
 
-            DonationTracker.login();
-            this.dispose();
+                DonationTracker.login();
+                this.dispose();
+            }
         }
         if ("cancel".equals(e.getActionCommand())) {
             DonationTracker.login();
