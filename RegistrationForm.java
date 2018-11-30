@@ -92,13 +92,13 @@ public class RegistrationForm extends JFrame implements ActionListener {
         if ("register".equals(e.getActionCommand())) {
             if (name.getText().isEmpty() || email.getText().isEmpty()
                     || (new String(pass.getPassword())).isEmpty()) {
-                System.out.println("fields cannot be empty");
+                fieldsEmpty();
                 validRegister = false;
             }
             if (validRegister) {
                 for (String emails : UserInfo.loginInfo.keySet()) {
                     if (emails.equals(email.getText())) {
-                        System.out.println("this email has already been taken");
+                        emailTaken();
                         validRegister = false;
                     }
                 }
@@ -116,5 +116,13 @@ public class RegistrationForm extends JFrame implements ActionListener {
             DonationTracker.login();
             this.dispose();
         }
+    }
+
+    private void fieldsEmpty() {
+        JOptionPane.showMessageDialog(north, "Fields cannot be empty");
+    }
+
+    private void emailTaken() {
+        JOptionPane.showMessageDialog(north, "This email is taken");
     }
 }
