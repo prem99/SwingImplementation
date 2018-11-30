@@ -21,11 +21,13 @@ public class ViewAllLocationsPage extends JFrame implements ActionListener {
         back = new JButton("Back");
         back.setActionCommand("back");
         back.addActionListener(this);
+        buttonPanel.add(back);
 
 
         north = getContentPane();
         north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
         north.add(titlePanel);
+        north.add(buttonPanel);
 
         north.setVisible(true);
 
