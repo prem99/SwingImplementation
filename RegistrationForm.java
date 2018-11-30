@@ -21,7 +21,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
     private JPanel passPanel;
     private JLabel passLabel;
 
-    private JTextField type;
+    private JComboBox<UserType> dropDown;
     private JPanel typePanel;
     private JLabel typeLabel;
 
@@ -57,10 +57,10 @@ public class RegistrationForm extends JFrame implements ActionListener {
 
         typePanel = new JPanel();
         typeLabel = new JLabel("User Type: ");
-        type = new JTextField();
-        type.setPreferredSize(new Dimension(150,50));
+        dropDown = new JComboBox<>(UserType.values());
+        dropDown.setPreferredSize(new Dimension(150,50));
         typePanel.add(typeLabel);
-        typePanel.add(type);
+        typePanel.add(dropDown);
 
         register = new JButton("Register");
         cancel = new JButton("Cancel");
@@ -89,6 +89,10 @@ public class RegistrationForm extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if ("register".equals(e.getActionCommand())) {
+            UserInfo.addNewUser(name.getText(), email.getText(),
+                    pass.getSelectedText(),
+                    dropDown.getSelectedItem().toString());
+
             DonationTracker.login();
             this.dispose();
         }
